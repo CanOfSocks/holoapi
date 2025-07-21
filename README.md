@@ -165,7 +165,7 @@ GET /api/video_format/abc123
 | `quality`             | int    | Quality ranking                     |
 | `source_preperence`   | int    | yt-dlp preference score when info.json was created        |
 | `language_preference` | int    | Language match preference           |
-| `format_details`      | object | Full embedded object from [/api/format](### `GET /api/format`) |
+| `format_details`      | object | Full embedded object from `/api/format` |
 
 ---
 
