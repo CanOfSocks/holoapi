@@ -1,7 +1,7 @@
 
 # 📘 HoloAPI Documentation
 
-HoloAPI is designed to provide a queryable API for fields commonly available in yt-dlp's info.json files.
+HoloAPI is designed to provide a queryable API for fields commonly available in yt-dlp's info.json files. This API focuses on providing video info for vtuber content.
 
 ## 📄 Common Query Parameters
 
