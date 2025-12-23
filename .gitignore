@@ -1,0 +1,4 @@
+.env
+.venv
+static/favicon.ico
+__pycache__

@@ -1,0 +1,8 @@
+Flask
+Flask-Caching
+blake3
+python-dotenv
+Markdown
+Flask-SQLAlchemy
+SQLAlchemy
+mysqlclient
