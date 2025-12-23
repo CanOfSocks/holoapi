@@ -5,4 +5,4 @@ python-dotenv
 Markdown
 Flask-SQLAlchemy
 SQLAlchemy
-mysqlclient
+mysql-connector-python
