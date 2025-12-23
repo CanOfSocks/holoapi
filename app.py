@@ -29,6 +29,11 @@ from sqlalchemy.orm import joinedload
 
 db.init_app(app)
 
+def add_cache_headers(response, max_age=3600):
+    """Adds client-side caching headers (60 minutes)."""
+    response.headers['Cache-Control'] = f'public, max_age={max_age}'
+    return response
+
 def make_cache_key():
     key = request.full_path.encode('utf-8')
     return blake3.blake3(key).hexdigest()
@@ -142,7 +147,7 @@ def get_channels():
         query = Channel.query
         query = apply_filters_and_sorting(Channel, query, request.args)
         data = get_paginated_response(query, page, per_page)
-        return jsonify(data)
+        return add_cache_headers(jsonify(data))
     except Exception as e:
         logging.exception("Error retrieving channel info:")
         return jsonify({'error': "An unexpected error occurred"}), 500
@@ -157,7 +162,7 @@ def get_formats():
         query = Format.query
         query = apply_filters_and_sorting(Format, query, request.args)
         data = get_paginated_response(query, page, per_page)
-        return jsonify(data)
+        return add_cache_headers(jsonify(data))
     except Exception as e:
         logging.exception("Error retrieving format info:")
         return jsonify({'error': "An unexpected error occurred"}), 500
@@ -173,7 +178,7 @@ def get_thumbnails():
         query = Thumbnail.query
         query = apply_filters_and_sorting(Thumbnail, query, request.args)
         data = get_paginated_response(query, page, per_page)
-        return jsonify(data)
+        return add_cache_headers(jsonify(data))
     except Exception as e:
         logging.exception("Error retrieving thumbnail info:")
         return jsonify({'error': "An unexpected error occurred"}), 500
@@ -213,7 +218,7 @@ def get_video_formats(video_id):
         )
         query = apply_filters_and_sorting(VideoFormat, query, request.args)
         data = get_paginated_response(query, page, per_page)
-        return jsonify(data)
+        return add_cache_headers(jsonify(data))
 
     except Exception as e:
         logging.exception("Error retrieving video format info:")
