@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template_string
 from flask_caching import Cache
+from flask_compress import Compress
 import blake3
 import os
 import logging
@@ -21,6 +22,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("connection_string")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 cache = Cache(app)
+
+app.config['COMPRESS_MIN_SIZE'] = 1000
+Compress(app)
 
 # Assuming you have already created db and models (Channel, Format, Thumbnail, Video, VideoFormat)
 from models import db, Channel, Format, Thumbnail, Video, VideoFormat  # import your models

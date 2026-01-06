@@ -6,3 +6,4 @@ Markdown
 Flask-SQLAlchemy
 SQLAlchemy
 mysql-connector-python
+flask-compress
